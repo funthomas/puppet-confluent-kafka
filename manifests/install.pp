@@ -8,14 +8,14 @@ class confluent_kafka::install {
       if $::confluent_kafka::manage_repo {
         include apt
         apt::source { 'confluent':
-          location          => 'http://packages.confluent.io/deb/1.0',
+          location          => 'https://packages.confluent.io/deb/4.0',
           release           => 'stable main',
-          architecture      => 'all',
+          architecture      => 'amd64',
           repos             => '',
           required_packages => 'debian-keyring debian-archive-keyring',
           key               => {
             'id'            => '1A77041E0314E6C5A486524E670540C841468433',
-            'source'        => 'http://packages.confluent.io/deb/1.0/archive.key',
+            'source'        => 'https://packages.confluent.io/deb/4.0/archive.key',
           },
           include           => {
             'deb'           => true,
