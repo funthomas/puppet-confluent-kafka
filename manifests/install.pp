@@ -9,9 +9,10 @@ class confluent_kafka::install {
         include apt
         apt::source { 'confluent':
           location          => 'http://packages.confluent.io/deb/1.0',
-          release           => 'stable main',
+          release           => 'stable',
           architecture      => 'all',
-          repos             => '',
+          repos             => 'main',
+          notify            => Exec[apt-update],
           required_packages => 'debian-keyring debian-archive-keyring',
           key               => {
             'id'            => '1A77041E0314E6C5A486524E670540C841468433',
@@ -26,6 +27,11 @@ class confluent_kafka::install {
     }
   }
 
+  exec { 'apt-get update':
+    command => "/usr/bin/apt-get update",
+    alias   => "apt-update",
+  }
+  
   if $::confluent_kafka::install_java {
     class { 'java':
       distribution => 'jdk',
@@ -33,6 +39,7 @@ class confluent_kafka::install {
   }
 
   package { "${::confluent_kafka::package_name}-${::confluent_kafka::scala_version}":
+    require => Exec[apt-update],
     ensure => $::confluent_kafka::version,
   }
 
