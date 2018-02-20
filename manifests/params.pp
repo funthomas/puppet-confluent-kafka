@@ -6,7 +6,7 @@
 class confluent_kafka::params {
   $scala_version     = '2.10.4'
   $service_name      = 'kafka'
-  $package_name      = "confluent-platform-oss"
+  $package_name      = "confluent-kafka"
   $version           = '0.8.2.0-1'
   $install_java      = false
   $install_service   = true
