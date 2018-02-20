@@ -4,7 +4,7 @@
 # It sets variables according to platform.
 #
 class confluent_kafka::params {
-  $scala_version     = '2.10.4'
+  $scala_version     = '2.11'
   $service_name      = 'kafka'
   $package_name      = "confluent-kafka"
   $version           = '0.8.2.0-1'
