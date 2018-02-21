@@ -28,7 +28,7 @@ class confluent_kafka::params {
   }
 
   $kafka_config_defaults = {
-    'broker.id'                                     => '1',
+   'broker.id'                                     => '',
     'log.dirs'                                      => $log_dirs,
     'port'                                          => '9092',
     'zookeeper.connect'                             => '',
